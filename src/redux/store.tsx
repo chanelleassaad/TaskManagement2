@@ -1,13 +1,30 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import tasksReducer from "./tasksSlice";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-export const store = configureStore({
-  reducer: {
-    tasks: tasksReducer,
-  },
+const tasksPersistConfig = {
+  key: "tasks",
+  storage: storage,
+  whitelist: ["taskState"],
+};
+
+const rootReducer = combineReducers({
+  tasks: persistReducer(tasksPersistConfig, tasksReducer),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
+
+export const persistor = persistStore(store);
+
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export default store;
+function getDefaultMiddleware(arg0: { serializableCheck: boolean }) {
+  throw new Error("Function not implemented.");
+}

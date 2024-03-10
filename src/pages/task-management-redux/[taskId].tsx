@@ -21,7 +21,7 @@ function TaskDetails() {
       <div>
         <h1>Task {task.id} Details</h1>
         <IconButton onClick={() => router.push("/task-management-redux")}>
-          <Close></Close>
+          <Close />
         </IconButton>
       </div>
 
@@ -36,7 +36,7 @@ function TaskDetailsPage() {
   return (
     <>
       <Provider store={store}>
-        <TaskDetails></TaskDetails>
+        <TaskDetails />
       </Provider>
     </>
   );

@@ -1,5 +1,9 @@
 import { Task } from "@/hooks/useTaskList";
 import { addTask, toggleTaskCompletion, deleteTask } from "@/redux/tasksSlice";
+import { RootState, store, persistor } from "@/redux/store";
+import React, { useState } from "react";
+import { useSelector, useDispatch, Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import {
   TextField,
   Button,
@@ -10,12 +14,8 @@ import {
   ListItemSecondaryAction,
   IconButton,
 } from "@mui/material";
-import store, { RootState } from "@/redux/store";
-import React, { useState } from "react";
-import { useSelector, useDispatch, Provider } from "react-redux";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useRouter } from "next/router";
-import { ArrowRight, KeyboardArrowDown } from "@mui/icons-material";
+import { ArrowRight, Delete } from "@mui/icons-material";
 
 function TaskManagementRedux() {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
@@ -23,6 +23,13 @@ function TaskManagementRedux() {
   const [taskName, setTaskName] = useState("");
 
   const router = useRouter();
+
+  const handleAddTask = () => {
+    if (taskName.trim() !== "") {
+      dispatch(addTask(taskName));
+      setTaskName("");
+    }
+  };
 
   return (
     <div>
@@ -37,10 +44,7 @@ function TaskManagementRedux() {
 
         <Button
           variant="outlined"
-          onClick={() => {
-            dispatch(addTask(taskName));
-            setTaskName("");
-          }}
+          onClick={handleAddTask}
           disabled={taskName.trim() === ""}
         >
           Create
@@ -60,20 +64,17 @@ function TaskManagementRedux() {
             <ListItemSecondaryAction>
               <IconButton
                 onClick={() => {
-                  router.push({
-                    pathname: "/task-management-redux/[pid]",
-                    query: { pid: task.id },
-                  });
+                  router.push(`/task-management-redux/${task.id}`);
                 }}
               >
-                <ArrowRight></ArrowRight>
+                <ArrowRight />
               </IconButton>
               <IconButton
                 onClick={() => dispatch(deleteTask(task.id))}
                 edge="end"
                 aria-label="delete"
               >
-                <DeleteIcon />
+                <Delete />
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
@@ -87,7 +88,9 @@ function TaskManagementReduxPage() {
   return (
     <>
       <Provider store={store}>
-        <TaskManagementRedux></TaskManagementRedux>
+        <PersistGate loading={null} persistor={persistor}>
+          <TaskManagementRedux />
+        </PersistGate>
       </Provider>
     </>
   );
