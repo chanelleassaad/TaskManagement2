@@ -1,7 +1,7 @@
 import { Task } from "@/hooks/useTaskList";
 import { addTask, toggleTaskCompletion, deleteTask } from "@/redux/tasksSlice";
 import { RootState, store, persistor } from "@/redux/store";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch, Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import {
@@ -29,6 +29,10 @@ function TaskManagementRedux() {
       dispatch(addTask(taskName));
     }
   };
+
+  useEffect(() => {
+    document.title = `TM App (${tasks.length} tasks)`;
+  }, [tasks]);
 
   return (
     <div>
@@ -71,13 +75,11 @@ function TaskManagementRedux() {
 
 function TaskManagementReduxPage() {
   return (
-    <>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <TaskManagementRedux />
-        </PersistGate>
-      </Provider>
-    </>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <TaskManagementRedux />
+      </PersistGate>
+    </Provider>
   );
 }
 
