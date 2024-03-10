@@ -19,6 +19,7 @@ function TaskManagement() {
 
   return (
     <div>
+      <h1>USING HOOKS</h1>
       <div className="flex justify-between">
         <TextField
           style={{ width: "90%", marginRight: "5%" }}
@@ -59,6 +60,11 @@ function TaskManagement() {
           </ListItem>
         ))}
       </List>
+
+      <a href={"/task-management-redux"}>
+        {" "}
+        Click here to see tasks done with Redux{" "}
+      </a>
     </div>
   );
 }
