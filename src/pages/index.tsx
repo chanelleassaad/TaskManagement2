@@ -1,4 +1,4 @@
-import TaskManagement from "./task-management";
+import TaskManagement from "./task-management-hooks";
 
 export default function Home() {
   return (

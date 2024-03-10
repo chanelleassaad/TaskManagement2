@@ -3,6 +3,7 @@ import { Provider, useSelector } from "react-redux";
 import store, { RootState } from "@/redux/store";
 import { IconButton } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import SectionTitle from "@/components/section-title";
 
 function TaskDetailsById() {
   const router = useRouter();
@@ -18,8 +19,10 @@ function TaskDetailsById() {
 
   return (
     <>
-      <div>
-        <h1>Task {task.id} Details</h1>
+      <SectionTitle title={"TM with redux"}></SectionTitle>
+
+      <div className="flex justify-between">
+        <h3>Task {task.id} Details</h3>
         <IconButton onClick={() => router.push("/task-management-redux")}>
           <Close />
         </IconButton>

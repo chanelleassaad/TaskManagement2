@@ -5,8 +5,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch, Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import {
-  TextField,
-  Button,
   List,
   ListItem,
   Checkbox,
@@ -17,6 +15,7 @@ import {
 import { useRouter } from "next/router";
 import { ArrowRight, Delete } from "@mui/icons-material";
 import TaskInput from "@/components/task-input";
+import SectionTitle from "@/components/section-title";
 
 function TaskManagementRedux() {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
@@ -35,8 +34,8 @@ function TaskManagementRedux() {
   }, [tasks]);
 
   return (
-    <div>
-      <h1>USING REDUX</h1>
+    <>
+      <SectionTitle title={"TM with redux"}></SectionTitle>
 
       <TaskInput onCreate={handleAddTask}></TaskInput>
 
@@ -56,7 +55,7 @@ function TaskManagementRedux() {
                   router.push(`/task-management-redux/${task.id}`);
                 }}
               >
-                <ArrowRight />
+                <h6>Details</h6> <ArrowRight />
               </IconButton>
               <IconButton
                 onClick={() => dispatch(deleteTask(task.id))}
@@ -69,7 +68,7 @@ function TaskManagementRedux() {
           </ListItem>
         ))}
       </List>
-    </div>
+    </>
   );
 }
 

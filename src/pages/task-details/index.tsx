@@ -1,3 +1,4 @@
+import SectionTitle from "@/components/section-title";
 import Image from "next/image";
 
 export default function TaskDetails({ data }: any) {
@@ -7,14 +8,10 @@ export default function TaskDetails({ data }: any) {
 
   return (
     <>
-      <p>{title}</p>
-      <Image
-        src={imageUrl}
-        width={430}
-        height={287}
-        alt="Picture of the author"
-        priority
-      />
+      <SectionTitle title={"Task Details"}></SectionTitle>
+
+      <h3>{title}</h3>
+      <Image src={imageUrl} width={430} height={287} alt="" priority />
     </>
   );
 }

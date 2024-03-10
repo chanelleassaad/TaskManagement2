@@ -1,0 +1,28 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .navLinks {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .navLinks li {
+    margin-right: 1rem;
+  }
+  
+  .navLinks a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .navLinks a:hover {
+    color: #0070f3;
+  }
+  

@@ -1,17 +1,17 @@
 import useTaskList from "@/hooks/useTaskList";
 import {
-  Button,
   Checkbox,
   IconButton,
   List,
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
-  TextField,
 } from "@mui/material";
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TaskInput from "@/components/task-input";
+import { useRouter } from "next/router";
+import SectionTitle from "@/components/section-title";
 
 function TaskManagement() {
   const { tasks, addTask, toggleTaskCompletion, deleteTask } = useTaskList();
@@ -22,9 +22,12 @@ function TaskManagement() {
     }
   };
 
+  const router = useRouter();
+
   return (
-    <div>
-      <h1>USING HOOKS</h1>
+    <>
+      <SectionTitle title={"TM with hooks"}></SectionTitle>
+
       <TaskInput onCreate={handleAddTask}></TaskInput>
 
       <List>
@@ -47,12 +50,7 @@ function TaskManagement() {
           </ListItem>
         ))}
       </List>
-
-      <a href={"/task-management-redux"}>
-        {" "}
-        Click here to see tasks done with Redux{" "}
-      </a>
-    </div>
+    </>
   );
 }
 
