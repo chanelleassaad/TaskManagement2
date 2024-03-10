@@ -4,7 +4,7 @@ import store, { RootState } from "@/redux/store";
 import { IconButton } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
-function TaskDetails() {
+function TaskDetailsById() {
   const router = useRouter();
   const { taskId } = router.query;
 
@@ -36,7 +36,7 @@ function TaskDetailsPage() {
   return (
     <>
       <Provider store={store}>
-        <TaskDetails />
+        <TaskDetailsById />
       </Provider>
     </>
   );
