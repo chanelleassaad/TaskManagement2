@@ -16,40 +16,25 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { ArrowRight, Delete } from "@mui/icons-material";
+import TaskInput from "@/components/task-input";
 
 function TaskManagementRedux() {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const dispatch = useDispatch();
-  const [taskName, setTaskName] = useState("");
 
   const router = useRouter();
 
-  const handleAddTask = () => {
+  const handleAddTask = (taskName: string) => {
     if (taskName.trim() !== "") {
       dispatch(addTask(taskName));
-      setTaskName("");
     }
   };
 
   return (
     <div>
       <h1>USING REDUX</h1>
-      <div className="flex justify-between">
-        <TextField
-          style={{ width: "90%", marginRight: "5%" }}
-          label="Task Name"
-          value={taskName}
-          onChange={(e) => setTaskName(e.target.value)}
-        />
 
-        <Button
-          variant="outlined"
-          onClick={handleAddTask}
-          disabled={taskName.trim() === ""}
-        >
-          Create
-        </Button>
-      </div>
+      <TaskInput onCreate={handleAddTask}></TaskInput>
 
       <List>
         {tasks.map((task: Task) => (

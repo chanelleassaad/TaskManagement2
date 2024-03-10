@@ -11,34 +11,21 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import TaskInput from "@/components/task-input";
 
 function TaskManagement() {
   const { tasks, addTask, toggleTaskCompletion, deleteTask } = useTaskList();
 
-  const [taskName, setTaskName] = useState("");
+  const handleAddTask = (taskName: string) => {
+    if (taskName.trim() !== "") {
+      addTask(taskName);
+    }
+  };
 
   return (
     <div>
       <h1>USING HOOKS</h1>
-      <div className="flex justify-between">
-        <TextField
-          style={{ width: "90%", marginRight: "5%" }}
-          label="Task Name"
-          value={taskName}
-          onChange={(e) => setTaskName(e.target.value)}
-        />
-
-        <Button
-          variant="outlined"
-          onClick={() => {
-            addTask(taskName);
-            setTaskName("");
-          }}
-          disabled={taskName.trim() === ""}
-        >
-          Create
-        </Button>
-      </div>
+      <TaskInput onCreate={handleAddTask}></TaskInput>
 
       <List>
         {tasks.map((task) => (
