@@ -1,0 +1,8 @@
+Built my application step by step as provided in the document.
+Steps i took and difficulties encountered:
+- wasn't sure if i should apply redux and hooks to the same task management page but it didn't seem logical so i seperarted them
+- did all the extra logic and features on the redux integrated task management page
+- task data was refreshed if the page was routed/refreshed, so i had to use redux persist which took time to figure out
+  but after some research turns out that setting serialization to false in the middleware to the store config was my solution
+- when fetching the image from the api, it first gave me an error; i had to add the domain of the image in the config file
+

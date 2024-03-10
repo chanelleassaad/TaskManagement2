@@ -1,7 +1,7 @@
 import { Task } from "@/hooks/useTaskList";
 import { addTask, toggleTaskCompletion, deleteTask } from "@/redux/tasksSlice";
 import { RootState, store, persistor } from "@/redux/store";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch, Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import {
@@ -32,6 +32,24 @@ function TaskManagementRedux() {
   useEffect(() => {
     document.title = `TM App (${tasks.length} tasks)`;
   }, [tasks]);
+
+  // BUGS EXAMPLES
+  // const handleAddTask = (taskName: string) => {
+  //   if (taskName.trim() !== "") {
+  //     // Not dispatching the action correctly
+  //     dispatch({ type: "addTask", payload: taskName });
+  //   }
+  // };
+
+  // // Not passing the tasks dependency to useEffect
+  // useEffect(() => {
+  //   document.title = `TM App (${tasks.length} tasks)`;
+  // }, []);
+
+  // // Using useState inside a conditional statement
+  // if (tasks.length > 0) {
+  //   const [count, setCount] = useState(0);
+  // }
 
   return (
     <>
