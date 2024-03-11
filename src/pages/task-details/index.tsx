@@ -2,7 +2,6 @@ import SectionTitle from "@/components/section-title";
 import Image from "next/image";
 
 export default function TaskDetails({ data }: any) {
-  console.log(data.data.result.image);
   const title = data.data.message;
   const imageUrl = data.data.result?.image;
 

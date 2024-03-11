@@ -34,7 +34,7 @@ const useTaskList = () => {
   };
 
   const deleteTask = (taskId: number) => {
-    setTasks(tasks.filter((t) => t.id != taskId));
+    setTasks(tasks.filter((task) => task.id != taskId));
   };
 
   return { tasks, addTask, toggleTaskCompletion, deleteTask };

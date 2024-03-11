@@ -7,7 +7,7 @@ import {
   ListItemSecondaryAction,
   ListItemText,
 } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TaskInput from "@/components/task-input";
 import { useRouter } from "next/router";

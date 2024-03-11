@@ -5,4 +5,6 @@ Steps i took and difficulties encountered:
 - task data was refreshed if the page was routed/refreshed, so i had to use redux persist which took time to figure out
   but after some research turns out that setting serialization to false in the middleware to the store config was my solution
 - when fetching the image from the api, it first gave me an error; i had to add the domain of the image in the config file
-
+- wrote some bugs and corrected them
+- converted the task input component from a functional component to a class component in order to try the 
+  lifecycle methods
